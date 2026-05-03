@@ -73,7 +73,7 @@
       "short_link": {
         "title": "Kurzlink öffnen",
         "description": "Gib einen Slug oder eine vollständige Kurz-URL ein, um direkt zum Ziel zu springen.",
-        "placeholder": "example oder https://sink.cool/example",
+        "placeholder": "example oder {url}",
         "action": "Öffnen"
       }
     },

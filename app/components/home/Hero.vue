@@ -2,6 +2,8 @@
 import { ArrowRight, Search } from 'lucide-vue-next'
 
 const slug = ref('')
+const requestUrl = useRequestURL()
+const exampleShortUrl = computed(() => `${requestUrl.origin}/example`)
 
 function normalizeInput(value: string) {
   const trimmed = value.trim()
@@ -77,7 +79,7 @@ function openShortLink() {
             type="text"
             inputmode="url"
             autocomplete="off"
-            :placeholder="$t('home.hero.short_link.placeholder')"
+            :placeholder="$t('home.hero.short_link.placeholder', { url: exampleShortUrl })"
             class="
               h-12 rounded-md pl-11 text-base
               sm:h-12

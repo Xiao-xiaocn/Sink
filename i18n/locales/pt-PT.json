@@ -73,7 +73,7 @@
       "short_link": {
         "title": "Abrir uma ligação curta",
         "description": "Introduza um slug ou URL curto completo para ir diretamente ao destino.",
-        "placeholder": "example ou https://sink.cool/example",
+        "placeholder": "example ou {url}",
         "action": "Abrir"
       }
     },

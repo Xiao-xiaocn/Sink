@@ -73,7 +73,7 @@
       "short_link": {
         "title": "Buka tautan pendek",
         "description": "Masukkan slug atau URL pendek lengkap untuk langsung menuju tujuannya.",
-        "placeholder": "example atau https://sink.cool/example",
+        "placeholder": "example atau {url}",
         "action": "Buka"
       }
     },
