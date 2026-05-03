@@ -13,11 +13,11 @@ export function useGlobeColors() {
   )
 
   const colors = computed<GlobeColors>(() => ({
-    globeFill: isDark.value ? 'oklch(0.28 0.006 286)' : 'oklch(0.97 0.002 286)',
+    globeFill: isDark.value ? 'oklch(0.3 0.005 286)' : 'oklch(0.95 0.002 286)',
   }))
 
   const countryColorTiers = computed<CountryColorTiers>(() => ({
-    noData: isDark.value ? 'oklch(0.46 0.006 286)' : 'oklch(0.78 0.006 286)',
+    noData: isDark.value ? 'oklch(0.4 0.005 286)' : 'oklch(0.88 0.003 286)',
     tier1: isDark.value ? 'oklch(0.723 0.219 149.579 / 35%)' : 'oklch(0.723 0.219 149.579 / 40%)',
     tier2: isDark.value ? 'oklch(0.723 0.219 149.579 / 55%)' : 'oklch(0.723 0.219 149.579 / 60%)',
     tier3: isDark.value ? 'oklch(0.723 0.219 149.579 / 75%)' : 'oklch(0.723 0.219 149.579 / 80%)',
