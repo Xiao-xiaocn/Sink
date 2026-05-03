@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import NumberFlow from '@number-flow/vue'
 import { Menu, Star, X } from 'lucide-vue-next'
-import { GitHubIcon, TelegramIcon, XIcon } from 'vue3-simple-icons'
+import { GitHubIcon } from 'vue3-simple-icons'
 
 const showMenu = ref(false)
-const { title, telegram, twitter, github } = useAppConfig()
+const { title, github } = useAppConfig()
 const { rawStats } = useGithubStats()
 </script>
 
@@ -98,6 +98,16 @@ const { rawStats } = useGithubStats()
                   variant="outline"
                   size="sm"
                 >
+                  <NuxtLink to="/dashboard" @click="showMenu = false">
+                    {{ $t('dashboard.title') }}
+                  </NuxtLink>
+                </Button>
+
+                <Button
+                  as-child
+                  variant="outline"
+                  size="sm"
+                >
                   <a
                     :href="github"
                     target="_blank"
@@ -123,101 +133,5 @@ const { rawStats } = useGithubStats()
     <main class="flex flex-1 flex-col pt-20">
       <slot />
     </main>
-
-    <!-- Footer -->
-    <footer class="border-t bg-background py-8">
-      <div class="mx-auto max-w-6xl px-6">
-        <div
-          class="
-            flex flex-col items-center gap-6 pt-2
-            md:flex-row md:justify-between
-          "
-        >
-          <div
-            class="
-              flex flex-col items-center gap-4
-              md:flex-row md:gap-6
-            "
-          >
-            <NuxtLink
-              to="/"
-              :title="title"
-              aria-label="home"
-              class="block size-fit"
-            >
-              <div class="flex items-center space-x-2">
-                <span
-                  class="flex size-8 items-center justify-center rounded-full"
-                >
-                  <img
-                    src="/sink.png"
-                    :alt="`${title} Logo`"
-                    class="size-full rounded-full"
-                  >
-                </span>
-                <span class="text-xl font-black">{{ title }}</span>
-              </div>
-            </NuxtLink>
-
-            <small class="block text-center text-sm text-muted-foreground">
-              &copy; {{ new Date().getFullYear() }}
-              <a
-                href="https://html.zone"
-                target="_blank"
-                title="HTML.ZONE"
-                class="hover:text-primary"
-              >
-                {{ $t('layouts.footer.copyright') }}
-              </a>
-            </small>
-          </div>
-
-          <div class="flex justify-center gap-6 text-sm">
-            <a
-              v-if="twitter"
-              :href="twitter"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="$t('layouts.footer.social.twitter')"
-              aria-label="Twitter"
-              class="
-                block text-muted-foreground
-                hover:text-primary
-              "
-            >
-              <XIcon class="size-6" />
-            </a>
-            <a
-              v-if="telegram"
-              :href="telegram"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="$t('layouts.footer.social.telegram')"
-              aria-label="Telegram"
-              class="
-                block text-muted-foreground
-                hover:text-primary
-              "
-            >
-              <TelegramIcon class="size-6" />
-            </a>
-            <a
-              v-if="github"
-              :href="github"
-              target="_blank"
-              rel="noopener noreferrer"
-              :title="$t('layouts.footer.social.github')"
-              aria-label="GitHub"
-              class="
-                block text-muted-foreground
-                hover:text-primary
-              "
-            >
-              <GitHubIcon class="size-6" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>

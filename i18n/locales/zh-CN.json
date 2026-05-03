@@ -69,7 +69,13 @@
   },
   "home": {
     "hero": {
-      "github_repo": "GitHub 仓库"
+      "github_repo": "GitHub 仓库",
+      "short_link": {
+        "title": "打开短链接",
+        "description": "输入短链标识或完整短链接，直接前往目标页面。",
+        "placeholder": "example 或 https://sink.cool/example",
+        "action": "打开"
+      }
     },
     "features": {
       "title": "功能特点",

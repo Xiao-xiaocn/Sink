@@ -1,116 +1,102 @@
 <script setup lang="ts">
-import { ArrowRight } from 'lucide-vue-next'
-import { GitHubIcon, XIcon } from 'vue3-simple-icons'
-import heroUrl from '@/assets/images/hero.svg?url'
+import { ArrowRight, Search } from 'lucide-vue-next'
 
-const { title, description, github, twitter } = useAppConfig()
+const slug = ref('')
+
+function normalizeInput(value: string) {
+  const trimmed = value.trim()
+  if (!trimmed)
+    return ''
+
+  try {
+    const url = new URL(trimmed)
+    return url.pathname.replace(/^\/+|\/+$/g, '')
+  }
+  catch {
+    return trimmed.replace(/^\/+|\/+$/g, '')
+  }
+}
+
+function openShortLink() {
+  const targetSlug = normalizeInput(slug.value)
+  if (!targetSlug)
+    return
+
+  navigateTo(`/${encodeURI(targetSlug)}`, { external: true })
+}
 </script>
 
 <template>
-  <section>
+  <section class="w-full">
     <div
       class="
-        py-16
+        mx-auto flex max-w-3xl flex-col items-center px-6 py-16 text-center
         md:py-24
       "
     >
       <div
         class="
-          mx-auto flex max-w-6xl flex-col items-center gap-12 px-6
-          lg:flex-row lg:justify-between
+          mb-8 flex size-12 items-center justify-center rounded-md border
+          bg-background shadow-sm
         "
       >
-        <div
-          class="
-            max-w-lg text-center
-            lg:text-left
-          "
-        >
-          <!-- Twitter Follow Badge -->
-          <a
-            :href="twitter"
-            target="_blank"
-            rel="noopener"
-            :title="$t('home.twitter.follow')"
-            class="
-              mx-auto mb-8 inline-flex w-fit items-center gap-2 rounded-full
-              border p-1 pr-3
-              lg:mx-0
-            "
-          >
-            <span
-              class="
-                flex items-center gap-1.5 rounded-full bg-muted px-2 py-1
-                text-xs
-              "
-            >
-              <XIcon aria-hidden="true" class="size-3" />
-            </span>
-            <span class="text-sm">{{ $t('home.twitter.follow') }}</span>
-            <span class="block h-4 w-px bg-border" />
-            <ArrowRight aria-hidden="true" class="size-4" />
-          </a>
+        <Search aria-hidden="true" class="size-5" />
+      </div>
 
-          <h1
-            class="
-              text-4xl font-medium text-balance
-              md:text-5xl
-              xl:text-6xl
-            "
-          >
-            {{ title }}
-          </h1>
-          <p class="mt-6 text-lg text-pretty text-muted-foreground">
-            {{ description }}
-          </p>
+      <h1
+        class="
+          text-4xl font-medium text-balance
+          md:text-5xl
+        "
+      >
+        {{ $t('home.hero.short_link.title') }}
+      </h1>
+      <p class="mt-4 max-w-xl text-base text-pretty text-muted-foreground">
+        {{ $t('home.hero.short_link.description') }}
+      </p>
 
-          <div
+      <form
+        class="
+          mt-10 flex w-full max-w-xl flex-col gap-3
+          sm:flex-row
+        "
+        @submit.prevent="openShortLink"
+      >
+        <label for="short-link-search" class="sr-only">Short link</label>
+        <div class="relative min-w-0 flex-1">
+          <Search
+            aria-hidden="true"
             class="
-              mt-10 flex flex-col items-center justify-center gap-2
-              sm:flex-row
-              lg:justify-start
+              pointer-events-none absolute top-1/2 left-4 size-4
+              -translate-y-1/2 text-muted-foreground
             "
-          >
-            <Button
-              as-child
-              size="lg"
-              class="px-5 text-base"
-            >
-              <NuxtLink to="/dashboard">
-                <span class="text-nowrap">{{ $t('dashboard.title') }}</span>
-              </NuxtLink>
-            </Button>
-            <Button
-              as-child
-              size="lg"
-              variant="ghost"
-              class="px-5 text-base"
-            >
-              <a
-                :href="github"
-                target="_blank"
-                :title="$t('layouts.footer.social.github')"
-                class="flex items-center gap-1.5"
-              >
-                <GitHubIcon aria-hidden="true" class="size-5" />
-                <span class="text-nowrap">{{ $t('home.hero.github_repo') }}</span>
-              </a>
-            </Button>
-          </div>
+          />
+          <Input
+            id="short-link-search"
+            v-model="slug"
+            type="text"
+            inputmode="url"
+            autocomplete="off"
+            :placeholder="$t('home.hero.short_link.placeholder')"
+            class="
+              h-12 rounded-md pl-11 text-base
+              sm:h-12
+            "
+          />
         </div>
 
-        <object
-          type="image/svg+xml"
-          :data="heroUrl"
+        <Button
+          type="submit"
+          size="lg"
           class="
-            hidden aspect-square w-96 shrink-0
-            md:block
-            lg:w-[420px]
+            h-12 shrink-0 gap-2 px-5 text-base
+            sm:w-auto
           "
-          aria-label="Link sharing illustration"
-          suppressHydrationWarning
-        />
-      </div>
+        >
+          <span>{{ $t('home.hero.short_link.action') }}</span>
+          <ArrowRight aria-hidden="true" class="size-4" />
+        </Button>
+      </form>
     </div>
   </section>
 </template>

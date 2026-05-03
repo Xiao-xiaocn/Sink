@@ -69,7 +69,13 @@
   },
   "home": {
     "hero": {
-      "github_repo": "Dépôt GitHub"
+      "github_repo": "Dépôt GitHub",
+      "short_link": {
+        "title": "Ouvrir un lien court",
+        "description": "Saisissez un slug ou une URL courte complète pour accéder directement à sa destination.",
+        "placeholder": "example ou https://sink.cool/example",
+        "action": "Ouvrir"
+      }
     },
     "features": {
       "title": "Fonctionnalités",

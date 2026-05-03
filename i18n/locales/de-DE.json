@@ -69,7 +69,13 @@
   },
   "home": {
     "hero": {
-      "github_repo": "GitHub-Repository"
+      "github_repo": "GitHub-Repository",
+      "short_link": {
+        "title": "Kurzlink öffnen",
+        "description": "Gib einen Slug oder eine vollständige Kurz-URL ein, um direkt zum Ziel zu springen.",
+        "placeholder": "example oder https://sink.cool/example",
+        "action": "Öffnen"
+      }
     },
     "features": {
       "title": "Funktionen",

@@ -69,7 +69,13 @@
   },
   "home": {
     "hero": {
-      "github_repo": "Kho GitHub"
+      "github_repo": "Kho GitHub",
+      "short_link": {
+        "title": "Mở liên kết rút gọn",
+        "description": "Nhập slug hoặc URL rút gọn đầy đủ để chuyển thẳng đến đích.",
+        "placeholder": "example hoặc https://sink.cool/example",
+        "action": "Mở"
+      }
     },
     "features": {
       "title": "Tính năng",
