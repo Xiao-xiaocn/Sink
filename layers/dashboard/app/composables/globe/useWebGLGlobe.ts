@@ -31,6 +31,7 @@ function deleteBufferInfo(gl: WebGLRenderingContext, bufferInfo: twgl.BufferInfo
 }
 
 const INTRO_SPIN_DURATION = 1000
+const CAMERA_FIT = 1.18
 
 // Cached MAX_VERTEX_ATTRIBS per WebGL context (WeakMap avoids memory leaks)
 const maxAttribsCache = new WeakMap<WebGLRenderingContext, number>()
@@ -123,7 +124,7 @@ export function useWebGLGlobe(ctx: WebGLGlobeContext) {
     const fov = (30 * Math.PI / 180) / Math.min(aspect, 1.0)
     const projection = m4.perspective(fov, aspect, 0.01, 10)
 
-    const baseDistance = 1 / Math.tan(0.8 * fov / 2)
+    const baseDistance = (1 / Math.tan(0.8 * fov / 2)) * CAMERA_FIT
     const distance = baseDistance * (1 - zoom.value * 0.7)
     let camera = m4.identity()
     camera = m4.rotateY(camera, (longitude.value + 180) * Math.PI / 180)
